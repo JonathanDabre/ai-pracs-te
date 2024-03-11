@@ -41,6 +41,10 @@ class BlockWorld:
         return neighbors
 
     def hill_climbing(self):
+        # If the initial state is already the goal state, return it immediately
+        if self.initial_state == self.goal_state:
+            return self.initial_state
+        
         current_state = self.initial_state
         while True:
             current_score = self.evaluate_state(current_state)
@@ -59,7 +63,9 @@ class BlockWorld:
         return current_state
 
 # Example usage:
-initial_state = {'A': ('on_table', None), 'B': ('on_top_of', 'A'), 'C': ('on_top_of', 'B'), 'D': ('on_top_of', 'C'), 'E': ('on_table', None), 'F': ('on_top_of', 'E'), 'G': ('on_top_of', 'F')}
+initial_state = {
+    'A': ('on_table', None), 
+    'B': ('on_top_of', 'A'), 'C': ('on_top_of', 'B'), 'D': ('on_top_of', 'C'), 'E': ('on_table', None), 'F': ('on_top_of', 'E'), 'G': ('on_top_of', 'F')}
 goal_state = {'A': ('on_table', None), 'B': ('on_table', None), 'C': ('on_table', None), 'D': ('on_table', None), 'E': ('on_top_of', 'A'), 'F': ('on_top_of', 'E'), 'G': ('on_top_of', 'F')}
 block_world = BlockWorld(initial_state, goal_state)
 final_state = block_world.hill_climbing()
@@ -72,4 +78,14 @@ state = {
     'B': ('on_top_of', 'A'),  # Block B is stacked on top of Block A
     'C': ('on_table', None)   # Block C is on the table
 }
+
+# Solution 
+# initial_state = {'A': ('on_table', None), 'B': ('on_top_of', 'A'), 'C': ('on_top_of', 'B'), 'D': ('on_top_of', 'C'), 'E': ('on_table', None), 'F': ('on_top_of', 'E'), 'G': ('on_top_of', 'F')}
+# goal_state = {'A': ('on_table', None), 'B': ('on_table', None), 'C': ('on_table', None), 'D': ('on_table', None), 'E': ('on_top_of', 'A'), 'F': ('on_top_of', 'E'), 'G': ('on_top_of', 'F')}
+ 
+
+
+# No Solution
+# initial_state = {'A': ('on_table', None), 'B': ('on_top_of', 'A'), 'C': ('on_top_of', 'B'), 'D': ('on_top_of', 'C'), 'E': ('on_table', None), 'F': ('on_top_of', 'E'), 'G': ('on_top_of', 'F')}
+# goal_state = {'A': ('on_table', None), 'B': ('on_table', None), 'C': ('on_table', None), 'D': ('on_table', None), 'E': ('on_top_of', 'A'), 'F': ('on_top_of', 'E'), 'G': ('on_top_of', 'F')}
 
